@@ -47,3 +47,8 @@ class VendingFillView(APIView):
             vend.count += int(request.data['update'])
             vend.save()
             return Response({"message": "Vending machine has been updated."}, status=status.HTTP_200_OK)
+
+
+class VendingEmptyListView(generics.ListAPIView):
+    queryset = Vending.objects.filter(count=0)
+    serializer_class = VendingSerializer
